@@ -14,6 +14,20 @@ Use following command to:
 ./ffmpeg -i input.mov -an -vf "scale=iw/3:ih/3" -ss 00:00:05 -t 00:00:18 a_third_the_frame_size.mp4
 ```
 
+## How to speed up a video
+
+To double the speed:
+
+```
+./ffmpeg -i input.mov -filter:v "setpts=0.5*PTS" -filter:a "atempo=2.0" output.mov
+```
+
+* Double the speed of video (`-filter:v "setpts=0.5*PTS"`)
+* Double the speed of audio (`-filter:a "atempo=2.0"`)
+* Remove audio (`-an`)
+
+Source: [FFmpeg wiki](https://trac.ffmpeg.org/wiki/How%20to%20speed%20up%20/%20slow%20down%20a%20video)
+
 ## Increase audio volume on an MP4
 
 It seems to only work with mp4 (or at least it is not working with mov).
