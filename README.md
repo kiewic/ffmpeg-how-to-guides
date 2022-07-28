@@ -1,4 +1,4 @@
-# FFmpeg command line tool how-tos
+# FFmpeg command line tool how-to guides
 
 ## Converting video from MOV to MP4
 
