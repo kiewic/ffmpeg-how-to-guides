@@ -52,6 +52,10 @@ Then:
 ./ffmpeg -f concat -safe 0 -i list.txt -c copy output.mp4
 ```
 
+The `-safe 0` is not required if the paths are relative.
+
+The `-c copy` sets all codec operations to copy, i.e., video, audio, subtitles, data and attachments, if any.
+
 ## Add one line of text
 
 ```
