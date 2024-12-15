@@ -67,3 +67,18 @@ The `-c copy` sets all codec operations to copy, i.e., video, audio, subtitles, 
 ```
 ./ffmpeg -i video.mp4 -vf "[in]drawtext=text='Have A':fontfile=/System/Library/Fonts/Supplemental/Arial.ttf:fontcolor=white:fontsize=30:x=(w-text_w)/2:y=(h-text_h)/2-55, drawtext=text='Happy Christmat':fontfile=/System/Library/Fonts/Supplemental/Arial.ttf:fontcolor=white:fontsize=30:x=(w-text_w)/2:y=(h-text_h)/2-20, drawtext=text='And A':fontfile=/System/Library/Fonts/Supplemental/Arial.ttf:fontcolor=white:fontsize=30:x=(w-text_w)/2:y=(h-text_h)/2+20, drawtext=text='Happy New Year':fontfile=/System/Library/Fonts/Supplemental/Arial.ttf:fontcolor=white:fontsize=30:x=(w-text_w)/2:y=(h-text_h)/2+55[out]" -codec:a copy output.mp4
 ```
+
+## Merge video from one file and audio from another
+
+```
+ffmpeg -i video.mp4 -i audio.mp4 -map 0:v:0 -map 1:a:0 -c:v copy -c:a copy output.mp4
+ffmpeg -i "/Users/gilberto/Pictures/Sabrina Carpenter Outside Lands Festival 2024 - 1080.mp4" -i "/Users/gilberto/Pictures/Sabrina Carpenter Outside Lands Festival 2024 - Audio.mp4" -map 0:v:0 -map 1:a:0 -c:v copy -c:a copy "/Users/gilberto/Pictures/Sabrina Carpenter Outside Lands Festival 2024 - 1080 With Audio.mp4"
+```
+
+1. `-i video.mp4`: Specifies the input file containing the video
+2. `-i audio.mp4`: Specifies the input file containing the audio
+3. `-map 0:v:0`: Maps the video stream from the first input (video.mp4)
+4. `-map 1:a:0`: Maps the audio stream from the second input (audio.mp4)
+5. `-c:v copy`: Copies the video stream without re-encoding
+6. `-c:a copy`: Copies the audio stream without re-encoding
+7. `output.mp4`: The output file with the video from video.mp4 and the audio from audio.mp4
